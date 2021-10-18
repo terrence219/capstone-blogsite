@@ -18,11 +18,7 @@ const indexRouter = require('./router/indexRouter')
 app.use('/', indexRouter)
 
 app.get('*', (req, res) => {
-	res.render('error', {
-		title: '404 Error',
-		status: '404',
-		errormsg: 'Page not found'
-	});
+	res.render('error');
 });
 
 app.listen(PORT, () => {
