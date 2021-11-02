@@ -9,13 +9,15 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.3.4",
     "hbs": "^4.1.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.2",
     "nodemon": "^2.0.13",
     "path": "^0.12.7"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",

@@ -1,26 +1,18 @@
-const express = require('express');
-const path = require('path');
+const express = require('express')
+const app = express()
+const path = require('path')
+require('dotenv').config()
+const router = require('./router/indexRouter')
 
+const PORT = process.env.PORT || 3000
+  
 
-require('dotenv').config();
-const app = express();
+app.use(express.urlencoded({'extended': false}))
+app.use(express.json())
 
-const PORT = process.env.PORT || 3000;
-
-app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'hbs');
-
-app.use(express.urlencoded({extended: false}))
-app.use(express.json());
-
-
-const indexRouter = require('./router/indexRouter')
-app.use('/', indexRouter)
-
-app.get('*', (req, res) => {
-	res.render('error');
-});
-
-app.listen(PORT, () => {
-	console.log(`Listening to localhost on port ${PORT}`);
+app.use(router)
+   
+app.listen(PORT, function(err){
+    if (err) console.log(err)
+    console.log("Server listening on PORT", PORT)
 });
