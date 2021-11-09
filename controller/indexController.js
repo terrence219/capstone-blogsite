@@ -1,6 +1,6 @@
-require('dotenv').config();
-var User = require('../model/user')
 const Post = require('../model/post')
+const hbs = require('hbs')
+const { post } = require('../router/indexRouter')
 
 const routerFunctions = {
   getPosts: (req, res) => {
@@ -10,8 +10,32 @@ const routerFunctions = {
           message: err.message || "Error"
         })
       else
-        res.send(data)
+        res.render('index', {
+          posts: data
+        })
     })
+  },
+
+  getPost: (req, res) => {
+    if (!req.params){
+      res.sendStatus(400).send({
+        message: "Content cannot be empty"
+      })
+    }
+
+    Post.getPost(req.params.id, (err, data) => {
+      if (err)
+      res.sendStatus(500).send({
+        message: err.message || "An Error Occurred"
+      })
+      else res.render('post',{
+        title: data[0].title,
+        date: data[0].date,
+        author: data[0].author_username,
+        content: data[0].content
+      })
+    })
+
   },
 
   createPost: (req, res) => {
@@ -68,10 +92,25 @@ const routerFunctions = {
 
     Post.update(post, (err, data) => {
       if (err)
-      res.sendStatus(500).send({
-        message: err.message || "An Error Occurred"
-      })
+        res.sendStatus(500).send({
+          message: err.message || "An Error Occurred"
+        })
       else res.send(data)
+    })
+  },
+  editPost: (req, res) => {
+    if(!req.params){
+      res.sendStatus(400).send({
+        message: "Content cannot be empty"
+      })
+    }
+
+    Post.getPost(req.params.id, (err, data) => {
+      if(err)
+        res.sendStatus(500).send({
+          message: err.message || "An Error Occurred"
+        })
+      else res.send(data[0])
     })
   }
 }
