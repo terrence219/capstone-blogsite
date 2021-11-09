@@ -1,0 +1,26 @@
+.postLink{
+  color: black;
+  text-decoration: none;
+  border: 2px solid black;
+  width: 20%;
+  margin: 10px;
+}
+
+.postLink:hover{
+  background-color: antiquewhite;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.postCard{
+  margin:20px;
+  padding: 5px;
+}
+
+.content{
+  text-align: justify;
+  text-justify: inter-word;
+}

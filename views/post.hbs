@@ -4,25 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog Website</title>
+  <title>Post - {{title}}</title>
+  <link rel="stylesheet" type = "text/css" href="/css/post.css">
   <link rel="stylesheet" type = "text/css" href="/css/global.css">
-  <link rel="stylesheet" type = "text/css" href="/css/index.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
 </head>
 <body>
-  <div class="container">
-    {{#each posts}}
-      <a href="post/{{id}}" class="postLink">
-        <div class="postCard">
-          {{id}} <br>
-          <b>{{title}}</b><br>
-          {{date}} <br>
-          {{author_username}}
-        </div>
-      </a>
-    {{/each}}
+  <a href="/">Back to Home</a>
+  <div class="postContainer">
+    <div class="title">{{title}}</div>
+    <div class="author">Created by: {{author}}</div>
+    <div class="date">Created on: {{date}}</div>
+    <div class="content">{{content}}</div>
   </div>
 </body>
 </html>

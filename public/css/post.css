@@ -1,0 +1,22 @@
+.postContainer{
+  margin-top: 128px;
+  margin-left: 444px;
+  margin-right: 444px;
+  margin-bottom: 220px;
+  background-color: white;
+  height: 500px;
+  padding: 20px;
+}
+
+.title{
+  font-size: 60px;
+}
+
+.content{
+  margin-top: 50px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+body{
+  background-color: antiquewhite;
+}
