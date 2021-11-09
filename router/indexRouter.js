@@ -7,4 +7,6 @@ router.get('/', controller.getPosts)
 router.post('/', controller.createPost)
 router.delete('/', controller.deletePost)
 router.patch('/', controller.updatePost)
+router.get('/edit/:id', controller.editPost)
+router.get('/post/:id', controller.getPost)
 module.exports = router
