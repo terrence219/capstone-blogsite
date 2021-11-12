@@ -4,6 +4,7 @@ const router = express.Router()
 const controller = require('../controller/indexController')
 
 router.get('/', controller.getPosts)
+router.get('/create', controller.getCreatePost)
 router.post('/', controller.createPost)
 router.delete('/', controller.deletePost)
 router.patch('/', controller.updatePost)

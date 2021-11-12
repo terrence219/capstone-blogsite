@@ -38,6 +38,10 @@ const routerFunctions = {
 
   },
 
+  getCreatePost: (req, res) => {
+    res.render('create')
+  },
+
   createPost: (req, res) => {
     if (!req.body){
       res.sendStatus(400).send({
@@ -49,7 +53,7 @@ const routerFunctions = {
       title: req.body.title,
       content: req.body.content,
       date: new Date(),
-      author_username: req.body.author_username
+      author_username: req.body.author
     })
 
     Post.create(post, (err, data) => {
@@ -57,7 +61,7 @@ const routerFunctions = {
         res.sendStatus(500).send({
           message: err.message || "An Error Occurred"
         })
-      else res.send(data)
+      else res.redirect('/')
     })
   },
 
