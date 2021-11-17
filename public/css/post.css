@@ -8,6 +8,28 @@
   padding: 20px;
 }
 
+.flexbox{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.formflex{
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input, textarea{
+  width: 500px;
+  margin: 8px 0;
+}
+
+.contentinput{
+  height: 200px;
+}
+
 .title{
   font-size: 60px;
 }

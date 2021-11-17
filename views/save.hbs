@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post - {{title}}</title>
+  <link rel="stylesheet" type = "text/css" href="/css/post.css">
+  <link rel="stylesheet" type = "text/css" href="/css/global.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+<body>
+  <a href="/">Back to Home</a>
+  <div class="flexbox">
+    <div class="postContainer">
+      {{#if data}}
+      <form action="/update/{{id}}" method="POST">
+        <div class="formflex">
+          <input type="text" name="title" placeholder="Title" required="required" value="{{title}}"/>
+          <input type="text" name="author" placeholder="Author" required="required" value="{{author}}"/>
+          <textarea class= "contentinput" name="content" placeholder="Content" required="required">
+            {{content}}</textarea>
+          <button type="submit">Update Post</button>
+        </div>
+      </form>
+      {{else}}
+      <form action="/" method="POST">
+        <div class="formflex">
+          <input type="text" name="title" placeholder="Title" required="required"/>
+          <input type="text" name="author" placeholder="Author" required="required"/>
+          <textarea class= "contentinput" name="content" placeholder="Content" required="required" value="{{content}}"></textarea>
+          <button type="submit">Create Post</button>
+        </div>
+      </form>
+      {{/if}}
+    </div>
+  </div>
+</body>
+</html>

@@ -29,6 +29,7 @@ const routerFunctions = {
         message: err.message || "An Error Occurred"
       })
       else res.render('post',{
+        id: data[0].id,
         title: data[0].title,
         date: data[0].date,
         author: data[0].author_username,
@@ -39,7 +40,24 @@ const routerFunctions = {
   },
 
   getCreatePost: (req, res) => {
-    res.render('create')
+    res.render('save', {data: false})
+  },
+
+  getUpdatePost: (req, res) => {
+    Post.getPost(req.params.id, (err, data) => {
+      if (err)
+      res.sendStatus(500).send({
+        message: err.message || "An Error Occurred"
+      })
+      else{
+        res.render('save',{
+        data: true,
+        id: data[0].id,
+        title: data[0].title,
+        author: data[0].author_username,
+        content: data[0].content
+      })}
+    })
   },
 
   createPost: (req, res) => {
@@ -72,12 +90,12 @@ const routerFunctions = {
       })
     }
 
-    Post.delete(req.body.id, (err, data) => {
+    Post.delete(req.params.id, (err, data) => {
       if (err)
         res.sendStatus(500).send({
           message: err.message || "An Error Occurred"
       })
-      else res.send(data)
+      else res.redirect('/')
     })
   },
 
@@ -89,7 +107,7 @@ const routerFunctions = {
     }
 
     const post = {
-      id: req.body.id,
+      id: req.params.id,
       title: req.body.title,
       content: req.body.content
     }
@@ -99,7 +117,7 @@ const routerFunctions = {
         res.sendStatus(500).send({
           message: err.message || "An Error Occurred"
         })
-      else res.send(data)
+      else res.redirect('/post/' + req.params.id)
     })
   },
   editPost: (req, res) => {
