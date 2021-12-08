@@ -21,6 +21,9 @@
       <div class="author">Created by: {{author}}</div>
       <div class="date">Created on: {{date}}</div>
       <div class="content">{{content}}</div>
+      {{#each comments}}
+        {{id}} {{content}} {{date}} {{author_username}} <br>
+      {{/each}}
     </div>
   </div>
 
