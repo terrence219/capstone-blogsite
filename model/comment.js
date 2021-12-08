@@ -44,7 +44,7 @@ Comment.delete = (id, result) => {
 }
 
 Comment.update = (updatedComment, result) => {
-  db.query("UPDATE comments SET content = ? WHERE id = ?", [updayedComment.content, updatedComment.id], (err, res) =>{
+  db.query("UPDATE comments SET content = ? WHERE id = ?", [updatedComment.content, updatedComment.id], (err, res) =>{
     if(err){
       console.log("error: ", err)
       result(err, null)
