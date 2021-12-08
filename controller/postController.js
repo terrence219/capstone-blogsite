@@ -1,6 +1,5 @@
 const Post = require('../model/post')
-const hbs = require('hbs')
-const { post } = require('../router/indexRouter')
+const Comment = require('../model/comment')
 
 const routerFunctions = {
   getPosts: (req, res) => {
@@ -22,21 +21,42 @@ const routerFunctions = {
         message: "Content cannot be empty"
       })
     }
+    else{
+      var comments = []
+      Comment.getComments(req.params.id, (err, commentData) => {
+        if (err)
+        res.sendStatus(500).send({
+          message: err.message || "An Error Occurred"
+        })
 
-    Post.getPost(req.params.id, (err, data) => {
-      if (err)
-      res.sendStatus(500).send({
-        message: err.message || "An Error Occurred"
-      })
-      else res.render('post',{
-        id: data[0].id,
-        title: data[0].title,
-        date: data[0].date,
-        author: data[0].author_username,
-        content: data[0].content
-      })
-    })
+        else{
 
+          commentData.forEach(comment => {
+            comments.push(JSON.parse(JSON.stringify(comment)))
+          });
+
+
+          Post.getPost(req.params.id, (err, postData) => {
+            if (err)
+            res.sendStatus(500).send({
+              message: err.message || "An Error Occurred"
+            })
+            
+            else{
+              console.log(comments)
+              res.render('post', {
+                id: postData[0].id,
+                title: postData[0].title,
+                date: postData[0].date,
+                author: postData[0].author_username,
+                content: postData[0].content,
+                comments: comments
+              })
+            }
+          })
+        }
+      })
+    }
   },
 
   getCreatePost: (req, res) => {
