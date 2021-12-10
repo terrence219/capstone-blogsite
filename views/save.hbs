@@ -20,7 +20,7 @@
         <div class="formflex">
           <input type="text" name="title" placeholder="Title" required="required" value="{{title}}"/>
           <input type="text" name="author" placeholder="Author" required="required" value="{{author}}"/>
-          <textarea class= "contentinput" name="content" placeholder="Content" required="required">
+          <textarea class= "contentinput" name="content" placeholder="Content" required="required" style="resize: none">
             {{content}}</textarea>
           <button type="submit">Update Post</button>
         </div>
@@ -30,7 +30,7 @@
         <div class="formflex">
           <input type="text" name="title" placeholder="Title" required="required"/>
           <input type="text" name="author" placeholder="Author" required="required"/>
-          <textarea class= "contentinput" name="content" placeholder="Content" required="required" value="{{content}}"></textarea>
+          <textarea class= "contentinput" name="content" placeholder="Content" required="required" value="{{content}}" style="resize: none"></textarea>
           <button type="submit">Create Post</button>
         </div>
       </form>
