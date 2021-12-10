@@ -21,9 +21,17 @@
       <div class="author">Created by: {{author}}</div>
       <div class="date">Created on: {{date}}</div>
       <div class="content">{{content}}</div>
+      <br><br>
       {{#each comments}}
         {{id}} {{content}} {{date}} {{author_username}} <br>
       {{/each}}
+      <br>
+      <form action="/post/{{id}}/add-comment" method="POST">
+          <input type="text" name="author" placeholder="Author" required="required"/>
+          <textarea class= "contentinput" name="content" placeholder="Comment" required="required" style="resize: none"></textarea><br>
+          <button type="submit">Submit Comment</button>    
+      </form>
+    </div>
     </div>
   </div>
 
