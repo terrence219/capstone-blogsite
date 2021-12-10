@@ -1,5 +1,6 @@
 const Post = require('../model/post')
 const Comment = require('../model/comment')
+const Report = require('../model/report')
 
 const routerFunctions = {
   getPosts: (req, res) => {
@@ -43,14 +44,21 @@ const routerFunctions = {
             })
             
             else{
-              console.log(comments)
-              res.render('post', {
-                id: postData[0].id,
-                title: postData[0].title,
-                date: postData[0].date,
-                author: postData[0].author_username,
-                content: postData[0].content,
-                comments: comments
+              Report.addViews(req.params.id, (err, reportData) => {
+                if (err)
+                res.sendStatus(500).send({
+                  message: err.message || "An Error Occurred"
+                })
+                else{
+                  res.render('post', {
+                    id: postData[0].id,
+                    title: postData[0].title,
+                    date: postData[0].date,
+                    author: postData[0].author_username,
+                    content: postData[0].content,
+                    comments: comments
+                  })
+                }
               })
             }
           })
@@ -140,6 +148,7 @@ const routerFunctions = {
       else res.redirect('/post/' + req.params.id)
     })
   },
+
   editPost: (req, res) => {
     if(!req.params){
       res.sendStatus(400).send({

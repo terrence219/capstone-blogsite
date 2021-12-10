@@ -3,6 +3,7 @@ const app = express()
 const router = express.Router()
 const post = require('../controller/postController')
 const comment = require('../controller/commentController')
+const report = require('../controller/reportController')
 
 router.get('/', post.getPosts)
 router.get('/create', post.getCreatePost)
@@ -14,4 +15,6 @@ router.get('/update/:id', post.getUpdatePost)
 router.post('/update/:id', post.updatePost)
 
 router.post('/post/:id/add-comment', comment.addComment)
+
+router.get('/reports', report.getReports)
 module.exports = router

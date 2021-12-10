@@ -1,7 +1,7 @@
 const Comment = require('../model/comment')
+const Report = require('../model/report')
 
 const routerFunctions = {
-
   addComment: (req, res) => {
     if (!req.body){
       res.sendStatus(400).send({
@@ -21,7 +21,15 @@ const routerFunctions = {
       res.sendStatus(500).send({
         message: err.message || "An Error Occurred"
       })
-    else res.redirect('/post/' + req.params.id)
+      else {
+        Report.addComment(req.params.id, (err, data) => {
+          if (err)
+          res.sendStatus(500).send({
+            message: err.message || "An Error Occurred"
+          })
+          else res.redirect('/post/' + req.params.id)
+        })
+      }
     })
   }
 }
