@@ -19,18 +19,6 @@ Post.create = (newPost, result) => {
   })
 }
 
-Post.getAll = result => {
-  db.query("SELECT * FROM posts", (err, res) => {
-    if (err) {
-      console.log("error: ", err)
-      result(null, err)
-      return
-    }
-
-    result(null, res)
-  })
-}
-
 Post.getPost = (id, result) => {
   db.query('SELECT * FROM posts WHERE id = ?', [id], (err, res) =>{
     if (err) {
@@ -66,5 +54,7 @@ Post.update = (updatedPost, result) => {
     result(null, `Updated post with ID: ${updatedPost.id}`)
   })
 }
+
+// TODO: Insert Post.getAll() below
 
 module.exports = Post
